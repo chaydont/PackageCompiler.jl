@@ -130,15 +130,15 @@ function package_toml(package::Symbol)
         chmod(precompile_toml, 0o644)
     end
     # remove any old manifest
-    if isfile(package_folder(pstr, "Manifest.toml"))
-        rm(package_folder(pstr, "Manifest.toml"))
-    end
+    # if isfile(package_folder(pstr, "Manifest.toml"))
+    #     rm(package_folder(pstr, "Manifest.toml"))
+    # end
     # add ourselves as dependencies and ensure we have a manifest
-    run_julia("""
-    using Pkg
-    Pkg.instantiate()
-    pkg"add PackageCompiler Pkg"
-    """, project = precompile_toml)
+    # run_julia("""
+    # using Pkg
+    # Pkg.instantiate()
+    # pkg"add PackageCompiler Pkg"
+    # """, project = precompile_toml)
 
     toml = TOML.parsefile(precompile_toml)
 
