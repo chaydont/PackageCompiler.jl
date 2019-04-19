@@ -121,7 +121,7 @@ function snoop_packages(packages::Symbol...; blacklist = [], file = package_fold
         for package in packages
             precompiles = package_folder(string(package), "incremental_precompile.jl")
             toml, snoopfile = package_toml(package)
-            snoop(package, toml, snoopfile, precompiles, false, blacklist)
+            snoop(package, toml, snoopfile, precompiles, true, blacklist)
             pkg_toml = TOML.parsefile(toml)
             manifest = joinpath(dirname(toml), "Manifest.toml")
             if isfile(manifest) # not all get a manifest (only if pkg operations are executed I suppose)
